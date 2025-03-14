@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Cách 1: External: nhúng tê[s .js từ bên ngoài] -->
+    <!-- <script src="./scrip.js"></script> -->
+    
+</head>
+<body>
+    <!-- Cách 3 : inline: nhúng vào thẻ(tag) Html -->
+   <p>JavaScrip</p>
+   <ul>
+    <li onmouseover="this.style.color='red'">Giang1</li>
+    <li>Giang2</li>
+    <li>Giang3</li>
+   </ul>
+   <!-- <button onclick="alert('xin chào')">Submit</button> -->
+   <div id="id"></div>
+</body>
+ <!-- Nhúng trực tiếp vào file Html -->
+    <script>
+        // alert('Xin Chào Giang')
+        const name = prompt('Nhập tên của bạn')
+        const age = prompt('Nhập age của bạn')
+        // alert('xin Chào:'+ name + " " + age)
+        // document.write("name + age")
+        document.getElementById("id").innerHTML = "xin chào: " + name + " " + "Tuổi: " + age
+    </script>
+</html>
