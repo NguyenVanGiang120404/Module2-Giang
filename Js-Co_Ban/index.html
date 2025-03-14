@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <form action="">
+        <label for="">EMail</label>
+        <input type="Email" placeholder="Nhập EMail của bạn"><br>
+        <label for="">Mật Khẩu</label>
+        <input type="password" placeholder="Nhập Mật Khẩu của bạn">
+        <button id="demo">Submit</button>
+        <p id="demo2"></p>
+    </form>
+    <script>
+        document.getElementById("demo").innerHTML = "Hello mọi người"
+        const pesrson = {
+            name : "giang",
+            age: 21,
+            city: "New york"
+        }
+        document.getElementById("demo2").innerText = pesrson.name + " " + pesrson.age +" "+pesrson.city
+    </script>
+</body>
+</html>
