@@ -9,21 +9,21 @@
 
 <body>
     <script>
-        const a = +prompt('Nhập cân nặng của bạn vào đây: ')
-        if (isNaN(a) || a <= 0) {
+        const size = parseInt(prompt('Nhập cân nặng của bạn vào đây: '))
+        if (isNaN(size) || size <= 0) {
             alert('Vui lòng nhập một số hợp lệ!');
-        } else if (a < 50) {
+        } else if (size < 50) {
             document.write('Bạn nên chọn size S nhé')
-        } else if (a >= 50 && a <= 65) {
+        } else if (size >= 50 && size <= 65) {
             document.write('Bạn nên chọn size M nhé ')
 
-        } else if (a >= 66 && a <= 80) {
+        } else if (size >= 66 && size <= 80) {
             document.write('Bạn nên chọn size L nhé ')
 
         } else {
             document.write('Bạn nên chọn size XL nhé ')
 
-        };
+        }
     </script>
 </body>
 
