@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chuyển Đổi Tiền Tệ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        form {
+            display: inline-block;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        input, select, button {
+            margin: 10px;
+            padding: 8px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Chuyển Đổi Tiền Tệ</h2>
+    <form id="currency-form">
+        <input type="number" id="amount" placeholder="Nhập số tiền" required>
+        <select id="from-currency">
+            <option value="USD">USD</option>
+            <option value="VND">VND</option>
+        </select>
+        <span> → </span>
+        <select id="to-currency">
+            <option value="VND">VND</option>
+            <option value="USD">USD</option>
+        </select>
+        <br>
+        <button type="button" onclick="convertCurrency()">Convert</button>
+    </form>
+    <h3>Kết quả: <span id="result">0</span></h3>
+
+    <script>
+        function convertCurrency() {
+            let amount = parseFloat(document.getElementById("amount").value);
+            let fromCurrency = document.getElementById("from-currency").value;
+            let toCurrency = document.getElementById("to-currency").value;
+            let exchangeRate = {
+                "USD_VND": 24000,
+                "VND_USD": 1 / 24000
+            };
+            let convertedAmount;
+
+            if (fromCurrency === "USD" && toCurrency === "VND") {
+                convertedAmount = amount * exchangeRate.USD_VND;
+            } else if (fromCurrency === "VND" && toCurrency === "USD") {
+                convertedAmount = amount * exchangeRate.VND_USD;
+            } else {
+                convertedAmount = amount;
+            }
+
+            document.getElementById("result").innerText = convertedAmount.toFixed(2);
+        }
+    </script>
+</body>
+</html>
