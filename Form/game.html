@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Puzzle</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        .puzzle {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            gap: 5px;
+            margin: auto;
+            width: 320px;
+        }
+        .piece {
+            width: 100px;
+            height: 100px;
+            background-size: cover;
+            cursor: pointer;
+            border: 1px solid #000;
+        }
+        #message {
+            margin-top: 20px;
+            font-size: 1.5em;
+            color: green;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h2>Game Puzzle</h2>
+    <div class="puzzle" id="puzzle"></div>
+    <div id="message">Chúc mừng! Bạn đã hoàn thành bức tranh.</div>
+    <script>
+        const images = [
+            'piece1.jpg', 'piece2.jpg', 'piece3.jpg',
+            'piece4.jpg', 'piece5.jpg', 'piece6.jpg',
+            'piece7.jpg', 'piece8.jpg', 'piece9.jpg'
+        ];
+        
+        let currentState = [...images].sort(() => Math.random() - 0.5);
+        
+        function createPuzzle() {
+            const puzzle = document.getElementById('puzzle');
+            puzzle.innerHTML = '';
+            currentState.forEach((img, index) => {
+                const piece = document.createElement('div');
+                piece.classList.add('piece');
+                piece.style.backgroundImage = `url(${img})`;
+                piece.dataset.index = index;
+                piece.onclick = () => changePiece(index);
+                puzzle.appendChild(piece);
+            });
+        }
+        
+        function changePiece(index) {
+            currentState[index] = images[index];
+            createPuzzle();
+            checkWin();
+        }
+        
+        function checkWin() {
+            if (currentState.every((img, i) => img === images[i])) {
+                document.getElementById('message').style.display = 'block';
+            }
+        }
+        
+        createPuzzle();
+    </script>
+</body>
+</html>
