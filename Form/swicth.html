@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiểm tra số ngày trong tháng</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        form {
+            display: inline-block;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        input, button, select {
+            margin: 10px;
+            padding: 8px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Kiểm Tra Số Ngày Trong Tháng</h2>
+    <form id="month-form">
+        <select id="month">
+            <option value="1">Tháng 1</option>
+            <option value="2">Tháng 2</option>
+            <option value="3">Tháng 3</option>
+            <option value="4">Tháng 4</option>
+            <option value="5">Tháng 5</option>
+            <option value="6">Tháng 6</option>
+            <option value="7">Tháng 7</option>
+            <option value="8">Tháng 8</option>
+            <option value="9">Tháng 9</option>
+            <option value="10">Tháng 10</option>
+            <option value="11">Tháng 11</option>
+            <option value="12">Tháng 12</option>
+        </select>
+        <br>
+        <button type="button" onclick="checkDaysInMonth()">Kiểm Tra</button>
+    </form>
+    <h3>Kết quả: <span id="result">---</span> ngày</h3>
+
+    <script>
+        function checkDaysInMonth() {
+            let month = parseInt(document.getElementById("month").value);
+            let days;
+            
+            switch (month) {
+                case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+                    days = 31;
+                    break;
+                case 4: case 6: case 9: case 11:
+                    days = 30;
+                    break;
+                case 2:
+                    days = 28;
+                    break;
+                default:
+                    days = 'Lỗi';
+            }
+            
+            document.getElementById("result").innerText = days;
+        }
+    </script>
+</body>
+</html>
