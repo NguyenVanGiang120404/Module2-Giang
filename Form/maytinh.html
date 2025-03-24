@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Máy Tính Cơ Bản</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        .calculator {
+            display: inline-block;
+            padding: 10px;
+            border: 1px solid #000;
+        }
+        .display {
+            width: 100%;
+            height: 40px;
+            text-align: right;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            border: 1px solid #000;
+            padding: 5px;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 5px;
+        }
+        button {
+            width: 50px;
+            height: 50px;
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+    <h2>Máy Tính Cơ Bản</h2>
+    <div class="calculator">
+        <div class="display" id="display">0</div>
+        <div class="buttons">
+            <button onclick="clearDisplay()">C</button>
+            <button onclick="appendOperator('/')">/</button>
+            <button onclick="appendOperator('*')">*</button>
+            <button onclick="appendOperator('-')">-</button>
+            <button onclick="appendNumber(7)">7</button>
+            <button onclick="appendNumber(8)">8</button>
+            <button onclick="appendNumber(9)">9</button>
+            <button onclick="appendOperator('+')">+</button>
+            <button onclick="appendNumber(4)">4</button>
+            <button onclick="appendNumber(5)">5</button>
+            <button onclick="appendNumber(6)">6</button>
+            <button onclick="calculate()">=</button>
+            <button onclick="appendNumber(1)">1</button>
+            <button onclick="appendNumber(2)">2</button>
+            <button onclick="appendNumber(3)">3</button>
+            <button onclick="appendNumber(0)" style="grid-column: span 2;">0</button>
+            <button onclick="appendDecimal()">.</button>
+        </div>
+    </div>
+    <script>
+        let display = document.getElementById("display");
+        let currentInput = "";
+
+        function appendNumber(num) {
+            if (currentInput === "0") {
+                currentInput = "";
+            }
+            currentInput += num;
+            updateDisplay();
+        }
+
+        function appendOperator(op) {
+            if (currentInput !== "" && !isNaN(currentInput.slice(-1))) {
+                currentInput += " " + op + " ";
+                updateDisplay();
+            }
+        }
+
+        function appendDecimal() {
+            if (!currentInput.includes(".")) {
+                currentInput += ".";
+                updateDisplay();
+            }
+        }
+
+        function clearDisplay() {
+            currentInput = "0";
+            updateDisplay();
+        }
+
+        function calculate() {
+            try {
+                currentInput = eval(currentInput).toString();
+                updateDisplay();
+            } catch {
+                currentInput = "Error";
+                updateDisplay();
+            }
+        }
+
+        function updateDisplay() {
+            display.innerText = currentInput;
+        }
+    </script>
+</body>
+</html>
