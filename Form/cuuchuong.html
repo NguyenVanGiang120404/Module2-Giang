@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toàn bộ bảng cửu chương</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+        th {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+
+    <h2 style="text-align: center;">Toàn bộ bảng cửu chương</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Bảng 2</th>
+                <th>Bảng 3</th>
+                <th>Bảng 4</th>
+                <th>Bảng 5</th>
+                <th>Bảng 6</th>
+                <th>Bảng 7</th>
+                <th>Bảng 8</th>
+                <th>Bảng 9</th>
+            </tr>
+        </thead>
+        <tbody id="multiplicationTable"></tbody>
+    </table>
+
+    <script>
+        let tableBody = document.getElementById("multiplicationTable");
+
+        for (let i = 1; i <= 10; i++) {
+            let row = "<tr>";
+            for (let num = 2; num <= 9; num++) {
+                row += `<td>${num} x ${i} = ${num * i}</td>`;
+            }
+            row += "</tr>";
+            tableBody.innerHTML += row;
+        }
+    </script>
+
+</body>
+</html>
