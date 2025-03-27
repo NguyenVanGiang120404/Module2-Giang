@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 20px;
+            margin: 10px;
+
+        }
+
+        .item {
+            display: flex;
+            position: relative;
+            left: 45px;
+        }
+
+        .text {
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 20px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 14px;
+            width: 14px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        .note1:checked+.slider {
+            background-color: #66bb6a;
+        }
+
+        .note2:checked+.slider {
+            background-color: #b4c630;
+        }
+
+        .note3:checked+.slider {
+            background-color: #e5471b;
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(20px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <label class="switch">
+            <input id="note1" class="note1" type="checkbox">
+            <span class="slider"></span>
+            <span class="text">Good</span>
+        </label>
+
+
+        <label class="switch">
+            <label class="switch">
+                <input id="note2" class="note2" type="checkbox">
+                <span class="slider"></span>
+                <span class="text">Cheap</span>
+            </label>
+
+
+        </label>
+        <label class="switch">
+            <input id="note3" class="note3" type="checkbox">
+            <span class="slider"></span>
+            <span class="text">Past</span>
+        </label>
+
+    </div>
+
+    <script>
+        var good = document.getElementsByClassName("note1")[0];
+        var cheap = document.getElementsByClassName("note2")[0];
+        var past = document.getElementsByClassName("note3")[0];
+
+        function handleClick() {
+            if (good.checked && cheap.checked) {
+                past.checked = false;
+            } else if (cheap.checked && past.checked) {
+                good.checked = false;
+            } else if (good.checked && past.checked) {
+                cheap.checked = false;
+            }else if(past.checked){
+                cheap.checked = false
+            }
+        }
+
+        good.addEventListener("change", handleClick);
+        cheap.addEventListener("change", handleClick);
+        past.addEventListener("change", handleClick);
+
+
+
+    </script>
+</body>
+
+</html>
