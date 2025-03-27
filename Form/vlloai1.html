@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Bước 1 : Nhập số lượng số nguyên tố cần tìm.
+        const numbers = +prompt("Nhập số bạn cần tìm vào đây: ")
+
+        //Bước 2 : Khai báo biến đếm số lượng số nguyên tố đã tìm thấy
+        let count = 0;
+
+        //Bước 3 : Bắt đầu từ số nguyên đầu tiên
+        let N =2;
+
+        //Hàm kiểm tra số nguyên tố
+        function isPrime(num){
+            if(num < 2) return false
+            for(i=2 ; i< Math.sqrt(num) ; i++){
+                if(num % i === 0) return false
+            }
+            return true
+        }
+
+        //Bước 4 : Tìm avf in ra number số nguyên tố đầu tiên
+        while(count<numbers){
+            if(isPrime(N)){
+                console.log(N);
+                count ++;
+                
+            }
+            N++
+        }
+    </script>
+</body>
+</html>
