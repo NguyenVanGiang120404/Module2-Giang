@@ -112,15 +112,18 @@
         var past = document.getElementsByClassName("note3")[0];
 
         function handleClick() {
+           
+            if (good.checked && past.checked) {
+                cheap.checked = false;
+            }
+            if (past.checked && cheap.checked) {
+                good.checked = false;
+            }
             if (good.checked && cheap.checked) {
                 past.checked = false;
-            } else if (cheap.checked && past.checked) {
-                good.checked = false;
-            } else if (good.checked && past.checked) {
-                cheap.checked = false;
-            }else if(past.checked){
-                cheap.checked = false
             }
+           
+
         }
 
         good.addEventListener("change", handleClick);

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+         //Bài 6: Tính mức hoa hồng dựa trên doanh thu bán hàng
+        var revenue = +prompt("Nhập số tiền doanh thu trong tháng này: ")
+        if (isNaN(revenue) || revenue < 0) {
+            alert("Nhập số tiền hợp lệ")
+        } else {
+            var commission
+
+            if (revenue < 5000000) {
+                commission = revenue * 0.05
+            } else if (revenue < 10000000) {
+                commission = revenue * 0.07
+            } else if (revenue < 20000000) {
+                commission = revenue * 0.10
+            } else {
+                commission = revenue * 0.15
+            }
+            alert("Hoa hồng nhận được: " + commission.toLocaleString("vi-VN")+ "VNĐ")
+        }
+    </script>
+</body>
+</html>
