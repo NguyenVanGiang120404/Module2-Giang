@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Hiển thị ra 20 số trong dãy fibonacci đầu tiên.
+        //Vòng lặp for
+        let n=20; // số lượng fibonacci cần hiển thị
+        let fib = [0,1] // KHởi tạo mảng chứa 2 số đầu tiên
+        for(let i = 2; i<n ;i++){
+            fib[i]=fib[i-1] + fib[i-2]; //Tính số fibonacci tiếp theo
+        }
+        console.log(fib.join(","));
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let count = 0; //Biến đếm số lượng chia hết cho 7
+        let sum = 0; //Biến lưu tổng;
+        let num = 0; //biến bắt đầu từ 0
+        for(;count<30; num++){
+            if(num % 7 ===0){ //kiểm tra nếu num chia hết được cho 7
+                sum = sum + num //cộng vào tổng
+                count++ // Tăng số lượng đêm
+            }
+        }
+        console.log("Tổng của 30 số chia hết được cho 7: " + sum);
+        
+
+    </script>
+</body>
+</html>

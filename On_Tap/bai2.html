@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Yêu cầu cài đặt nút có tính năng chuyển đổi chế độ hiện thị của
+     hình nền khi nhấn vào.
+     =>Javascript sử dụng document.getElementById để lấy tham chiếu đến nút bấm và phần tử hình ảnh.
+     addEventListener: Được sử dụng để gắn trình sự kiện nhấp chuột vào nút bấm, khi nút bấm được nhấn, hàm bên trong trình nghe sẽ được thực thi.
+     Img.style.display: Kiểm tra lại kiểu hiển thị của hình ảnh, nếu kiểu hiển thị hiện tại là “none” (nghĩa là hình ảnh bị ẩn), hàm sẽ thay đổi nó thành “block” (hình ảnh hiển thị) và ngược lại. 
+     -->
+    <button id="changeImg">Onchange Img</button>
+    <img id="img" src="../On_Tap/image/images.jpg" alt="">
+    <script>
+        document.getElementById("changeImg").addEventListener("click", function () {
+            const img = document.getElementById("img");
+            img.style.display = img.style.display === 'none' ? 'block' : 'none'
+        })
+    </script>
+</body>
+
+</html>
