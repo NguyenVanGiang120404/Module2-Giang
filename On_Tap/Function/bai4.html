@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="bai-5">
+        <h2>
+            Bài 5. Viết 1 function lấy ra 1 số nhỏ nhất trong 1 mảng các số.
+        </h2>
+        <ul>
+            <li>
+                Tham số truyền vào là 1 mảng các số.
+            </li>
+            <li>
+                Kết quả là số nhỏ nhất trong mảng.
+            </li>
+        </ul>
+        <button onclick="sortMinimumNumber()">Thử ngay</button>
+        <p id="ket-qua-5"></p>
+    </div>
+    <script>
+        var number = [1, 4, 6, 2, -1, -100, 90, 80];
+        document.getElementById("ket-qua-5").innerHTML = number
+       function sortMinimumNumber(){
+        var number = [1, 4, 6, 2, -1, -100, 90, 80];
+        var min = Math.min(...number)
+        document.getElementById("ket-qua-5").innerHTML = min
+       }
+        
+
+
+    </script>
+</body>
+
+</html>

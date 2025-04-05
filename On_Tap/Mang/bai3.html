@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //Đảo ngược phần tử trong mảng
+        // function reverseArray(arr){
+        //     return arr.reverse();
+        // }
+        // console.log(reverseArray([1,2,3,4,5]));
+
+        function reverseArray(arr) {
+            let left = 0, right = arr.length - 1; // Con trỏ trái và phải
+
+            while (left < right) { // Khi nào left nhỏ hơn right thì tiếp tục đổi chỗ
+                [arr[left], arr[right]] = [arr[right], arr[left]]; // Hoán đổi hai phần tử
+                left++;  // Di chuyển con trỏ trái
+                right--; // Di chuyển con trỏ phải
+            }
+
+            return arr; // Trả về mảng đã đảo ngược
+        }
+
+        // Kiểm tra hàm
+        console.log(reverseArray([1, 2, 3, 4, 5])); // Output: [5, 4, 3, 2, 1]
+
+    </script>
+</body>
+
+</html>

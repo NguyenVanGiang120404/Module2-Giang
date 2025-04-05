@@ -81,7 +81,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <!-- <div class="container">
         <label class="switch">
             <input id="note1" class="note1" type="checkbox">
             <span class="slider"></span>
@@ -104,31 +104,77 @@
             <span class="text">Past</span>
         </label>
 
-    </div>
+    </div> -->
+    <div><button id="good" onclick="changeGood()">Good</button></div>
+    <div><button id="cheap" onclick="changeCheap()">Cheap</button></div>
+    <div><button id="past" onclick="changePast()">Past</button></div>
 
     <script>
-        var good = document.getElementsByClassName("note1")[0];
-        var cheap = document.getElementsByClassName("note2")[0];
-        var past = document.getElementsByClassName("note3")[0];
-
-        function handleClick() {
-           
-            if (good.checked && past.checked) {
-                cheap.checked = false;
+        let isGood = false, isCheap = false, isPast = false;
+        
+        function changeGood(){
+            isGood = !isGood;
+            if(isGood && isCheap){
+                isPast = false;
             }
-            if (past.checked && cheap.checked) {
-                good.checked = false;
+            btn();
+        }
+        
+        function changeCheap(){
+            isCheap = !isCheap;
+            if(isCheap && isPast){
+                isGood = false;
             }
-            if (good.checked && cheap.checked) {
-                past.checked = false;
+            btn();
+        }
+        
+        function changePast(){
+            isPast = !isPast;
+            if(isPast && isCheap){
+                isGood = false;
             }
-           
-
+            btn();
         }
 
-        good.addEventListener("change", handleClick);
-        cheap.addEventListener("change", handleClick);
-        past.addEventListener("change", handleClick);
+        function btn(){
+            good.style.backgroundColor = ""
+            cheap.style.backgroundColor = ""
+            past.style.backgroundColor = ""
+
+            // Set colors based on state
+            if(isGood){
+                good.style.backgroundColor = "green";
+            }
+            if(isCheap){
+                cheap.style.backgroundColor = "yellow";
+            }
+            if(isPast){
+                past.style.backgroundColor = "red";
+            }
+        }
+
+        // var good = document.getElementsByClassName("note1")[0];
+        // var cheap = document.getElementsByClassName("note2")[0];
+        // var past = document.getElementsByClassName("note3")[0];
+
+        // function handleClick() {
+           
+        //     if (good.checked && past.checked) {
+        //         cheap.checked = false;
+        //     }
+        //     if (past.checked && cheap.checked) {
+        //         good.checked = false;
+        //     }
+        //     if (good.checked && cheap.checked) {
+        //         past.checked = false;
+        //     }
+           
+
+        // }
+
+        // good.addEventListener("change", handleClick);
+        // cheap.addEventListener("change", handleClick);
+        // past.addEventListener("change", handleClick);
 
 
 

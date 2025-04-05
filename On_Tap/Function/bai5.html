@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="bai-6">
+        <h2>
+          Bài 6. Cho 1 mảng gồm tên của 5 học viên. Hãy viết function sắp xếp lại thứ tự các học viên theo bảng chữ cái và in ra màn hình danh sách học viên.
+        </h2>
+        <ul>
+          <li>
+            Tham số truyền vào là 1 mảng gồm tên của 5 người.
+          </li>
+          <li>
+            Kết quả: In ra màn hình danh sách các học viên theo thứ tự bảng chữ cái (tiếng Anh), mỗi người trên 1 dòng.
+          </li>
+        </ul>
+        <button onclick="sortStudentName()">Thử ngay</button>
+        <p id="ket-qua-6"></p>
+      </div>
+</body>
+<script>
+    var studentName = ['giang', 'duc' , 'huy','quyen','thuong','linh','an']
+    document.getElementById('ket-qua-6').innerHTML = studentName
+    function sortStudentName(){
+    
+    document.getElementById('ket-qua-6').innerHTML = studentName.sort().join("<br>")
+
+    }
+</script>
+</html>

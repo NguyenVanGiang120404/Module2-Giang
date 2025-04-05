@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="emailForm" action="">
+        <label for="">Email</label>
+        <input type="Email" id="emailInput">
+        <button type="submit">Submit</button>
+        <p id="message"></p>
+    </form>
+    <script>
+        //Tạo một form yêu cầu đăng nhập email và kiểm tra tính hợp
+        //lệ của địa chỉ email được nhập.Hiển thị thông báo nếu email 
+        //không hợp lệ
+        document.getElementById("emailForm").addEventListener("click" ,function(){
+            event.preventDefault();
+            const email = document.getElementById("emailInput").value
+            let message = ""
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if(emailRegex.test(email)){
+                message = "Email is valid"
+            }else{
+                message = "Please enter a valid email address?"
+            }
+            document.getElementById("message").innerText = message
+        })
+    </script>
+</body>
+</html>

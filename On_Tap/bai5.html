@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+</head>
+
+<body>
+    <input type="text" id="number1">
+    <select id="operation">
+        <option value="add">+</option>
+        <option value="subtract">-</option>
+        <option value="multiply">*</option> <!-- Sửa đúng chính tả -->
+        <option value="divide">/</option>
+    </select>
+    <input type="text" id="number2">
+    <button id="btn">Calculate</button> <!-- Sửa lại id cho nút -->
+    <p id="result"></p>
+
+    <script>
+        // document.getElementById("btn").addEventListener("click", function () {
+        //     const num1 = parseFloat(document.getElementById("number1").value); // Chuyển thành số
+        //     const num2 = parseFloat(document.getElementById("number2").value); // Chuyển thành số
+        //     const operation = document.getElementById("operation").value;
+        //     let result;
+
+        //     // Kiểm tra nếu nhập sai (không phải số)
+        //     if (isNaN(num1) || isNaN(num2)) {
+        //         document.getElementById("result").innerText = "Vui lòng nhập số hợp lệ!";
+        //         return;
+        //     }
+
+        //     switch (operation) {
+        //         case 'add':
+        //             result = num1 + num2;
+        //             break;
+        //         case 'subtract':
+        //             result = num1 - num2;
+        //             break;
+        //         case 'multiply':
+        //             result = num1 * num2;
+        //             break;
+        //         case 'divide':
+        //             if (num2 === 0) {
+        //                 result = "Không thể chia cho 0!";
+        //             } else {
+        //                 result = num1 / num2;
+        //             }
+        //             break;
+        //         default:
+        //             result = "Phép toán không hợp lệ!";
+        //     }
+
+        //     document.getElementById("result").innerText = "Result: " + result;
+        // });
+
+
+    //    let one = [2,3,4,7];
+    //    let two = new Array(one.length + 1)
+    //    for(let i=0; i<one.length;i++){
+    //     two[i] = one[i]
+    //    }
+    //    two[one.length] =1
+    //    console.log(two);
+
+    let girls = ['lan' ,'huong','thao'];
+    let boy = ['ty' , 'teo' , 'tuan']
+    let ramdom1= girls[Math.floor(Math.random() *girls.length)]
+    let ramdom2= boy[Math.floor(Math.random() *boy.length)]
+    console.log(`Chọn đôi ngẫu nhiên:  ${ramdom1} * ${ramdom2}`);
+    
+
+    
+       
+       
+    </script>
+</body>
+
+</html>

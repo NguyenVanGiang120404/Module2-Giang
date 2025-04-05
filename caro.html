@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caro Game</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        #board {
+            display: grid;
+            grid-template-columns: repeat(15, 40px);
+            grid-template-rows: repeat(15, 40px);
+            gap: 1px;
+            background-color: #333;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .cell {
+            width: 40px;
+            height: 40px;
+            background-color: #fff;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .cell:hover {
+            background-color: #f0f0f0;
+        }
+
+        #status {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        #restart {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #restart:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Caro Game</h1>
+    <div id="board"></div>
+    <div id="status">Player X's turn</div>
+    <button id="restart">Restart Game</button>
+
+    <script>
+        const BOARD_SIZE = 15;
+        let currentPlayer = 'X';
+        let gameBoard = Array(BOARD_SIZE).fill().map(() => Array(BOARD_SIZE).fill(''));
+        let gameActive = true;
+
+        // Create the game board
+        const board = document.getElementById('board');
+        for (let i = 0; i < BOARD_SIZE; i++) {
+            for (let j = 0; j < BOARD_SIZE; j++) {
+                const cell = document.createElement('button');
+                cell.classList.add('cell');
+                cell.dataset.row = i;
+                cell.dataset.col = j;
+                cell.addEventListener('click', handleCellClick);
+                board.appendChild(cell);
+            }
+        }
+
+        function handleCellClick(e) {
+            if (!gameActive) return;
+
+            const row = parseInt(e.target.dataset.row);
+            const col = parseInt(e.target.dataset.col);
+
+            if (gameBoard[row][col] !== '') return;
+
+            gameBoard[row][col] = currentPlayer;
+            e.target.textContent = currentPlayer;
+
+            if (checkWin(row, col)) {
+                document.getElementById('status').textContent = `Player ${currentPlayer} wins!`;
+                gameActive = false;
+                return;
+            }
+
+            currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+            document.getElementById('status').textContent = `Player ${currentPlayer}'s turn`;
+        }
+
+        function checkWin(row, col) {
+            const directions = [
+                [[0, 1], [0, -1]], // horizontal
+                [[1, 0], [-1, 0]], // vertical
+                [[1, 1], [-1, -1]], // diagonal
+                [[1, -1], [-1, 1]] // anti-diagonal
+            ];
+
+            for (const direction of directions) {
+                let count = 1;
+                for (const [dx, dy] of direction) {
+                    let r = row + dx;
+                    let c = col + dy;
+                    while (
+                        r >= 0 && r < BOARD_SIZE &&
+                        c >= 0 && c < BOARD_SIZE &&
+                        gameBoard[r][c] === currentPlayer
+                    ) {
+                        count++;
+                        r += dx;
+                        c += dy;
+                    }
+                }
+                if (count >= 5) return true;
+            }
+            return false;
+        }
+
+        document.getElementById('restart').addEventListener('click', () => {
+            gameBoard = Array(BOARD_SIZE).fill().map(() => Array(BOARD_SIZE).fill(''));
+            gameActive = true;
+            currentPlayer = 'X';
+            document.querySelectorAll('.cell').forEach(cell => {
+                cell.textContent = '';
+            });
+            document.getElementById('status').textContent = "Player X's turn";
+        });
+    </script>
+</body>
+</html> 

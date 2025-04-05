@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Tìm số lớn nhất trong mảng
+        function finMax(arr){
+            let max = arr[0] //Gỉa sử phần tử đầu tiên là lớn nhất
+            for(let i=0; i<arr.length;i++){ //lặp qua từng phần tử trong mảng
+                if(arr[i]>max){//nếu phần tử hiện tại lớn hơn max
+                    max = arr[i]//cập nhật max
+                    }
+                }
+                return max // trả về số lớn nhất
+        }
+        console.log(finMax([10,2,30,80]));
+        
+    </script>
+</body>
+</html>

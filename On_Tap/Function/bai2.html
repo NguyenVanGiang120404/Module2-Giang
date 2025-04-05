@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="bai2">
+        <h2>Bài 2: Viết function tính thế kỷ của 1 năm. Biết thế
+            kỉ thứ nhất tính từ năm 1 đến 100
+        </h2>
+        <ul>
+            <li>
+              Tham số truyền vào là 1 số nguyên dương.
+            </li>
+            <li>
+              Kết quả là thế kỷ của năm. Ví dụ 2019 => Kết quả là 21.
+            </li>
+          </ul>
+          <button onclick="centuryCount()">Thử ngay</button>
+          <p id="ket-qua-2"></p>
+    </div>
+</body>
+<script>
+    function centuryCount(){
+        var ketqua2 = prompt("Nhập năm bất kì để xem năm đó thuộc thế kỉ nào: ")
+        if(ketqua2 != null){
+            document.getElementById("ket-qua-2").innerHTML = "Năm" + ketqua2 +"thuộc thế kỉ" +Math.ceil(ketqua2/100)
+        }
+    }
+</script>
+</html>

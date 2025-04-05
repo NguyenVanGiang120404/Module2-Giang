@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Bài 1: Viết một hàm sumArray(arr) nhận vào một mảng số nguyên và 
+        //trả về tổng các phần tử trong mảng
+        function sumArray(arr){
+            let sum = 0; //khởi tạo biến sum để lưu tổng , bắt đầu từ 0
+            for(let i=0;i<arr.length;i++){ //Lặp qua từng phần tử trong mảng
+                sum+=arr[i]; // cộng giá trị phần tử hiện tại vào tổng
+            }
+            return sum; //trả về tổng cuối cùng
+        }
+        console.log(sumArray([1,2,3,4,5]));
+        
+    </script>
+</body>
+</html>

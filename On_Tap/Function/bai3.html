@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="bai-3">
+        <h2>
+          Bài 3. Cho 1 chuỗi dài hơn 15 ký tự. Viết 1 function cắt chuỗi, lấy ra 10 ký tự đầu tiên và thêm vào dấu "..." ở cuối chuỗi.
+        </h2>
+        <ul>
+          <li>
+            Tham số truyền vào là 1 chuỗi dài hơn 15 ký tự.
+          </li>
+          <li>
+            Kết quả là chuỗi đó sau khi cắt đi còn 10 ký tự, cuối chuỗi có dấu "..." biểu thị là chuỗi bị cắt.
+          </li>
+        </ul>
+        <button onclick="stringMethod()">Thử ngay</button>
+        <p id="ket-qua-3"></p>
+      </div>
+</body>
+<script>
+    function stringMethod(){
+        var mainString = prompt("Nhập vào 1 chuỗi khoảng 15 kí tự : ")
+        if(mainString === null) {
+            document.getElementById("ket-qua-3").innerHTML = "Bạn đã hủy nhập liệu"
+            return
+        }
+        if(mainString.length <= 15) {
+            document.getElementById("ket-qua-3").innerHTML = "Vui lòng nhập chuỗi dài hơn 15 ký tự"
+            return
+        }
+        var spliceMain = mainString.slice(0,10)
+        var push = '...'
+        document.getElementById("ket-qua-3").innerHTML = spliceMain + push
+    }
+</script>
+</html>

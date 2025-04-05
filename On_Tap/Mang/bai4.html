@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Tìm số nhỏ nhất trong mảng
+        function finMin(arr){
+            let min = arr[0] // giả sử phần tử đầu tiên là lớn nhất
+            for(let i=1; i<arr.length;i++){//lặp qua các phần tử
+                if(arr[i]<min){ // nếu mà phần tử nhỏ hơn min 
+                    min = arr[i]; // cập nhật phần tử
+                }
+            }
+            return min //trả về số đã nhật
+        }
+        console.log(finMin([20,-1,90,-5]));
+        
+    </script>
+</body>
+</html>
