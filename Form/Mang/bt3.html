@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Cờ Caro Đơn Giản</title>
+    <style>
+        body { text-align: center; font-family: Arial; }
+        .oCo { 
+            width: 50px; height: 50px; 
+            border: 1px solid black; 
+            display: inline-block; 
+            text-align: center; 
+            line-height: 50px; 
+            font-size: 24px; 
+            cursor: pointer; 
+            background-color: #f0f0f0; 
+        }
+        .hangCo { display: flex; }
+        button { margin: 10px; }
+        #thongBao { margin: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Cờ Caro</h1>
+    <div id="luotChoi">Lượt chơi: X</div>
+    <div id="banCo"></div>
+    <button onclick="resetGame()">Chơi Lại</button>
+    <div id="thongBao"></div>
+
+    <script>
+        // Biến lưu trữ trạng thái game
+        let banCo = [];
+        let luotChoi = 'X';
+        let gameKetThuc = false;
+        const kichThuoc = 3;
+        
+        // Khởi tạo bàn cờ
+        function khoiTaoBanCo() {
+            banCo = [];
+            for (let i = 0; i < kichThuoc; i++) {
+                banCo[i] = [];
+                for (let j = 0; j < kichThuoc; j++) {
+                    banCo[i][j] = '.';
+                }
+            }
+        }
+        
+        // Hiển thị bàn cờ
+        function hienThiBanCo() {
+            const banCoElement = document.getElementById('banCo');
+            banCoElement.innerHTML = '';
+            
+            for (let i = 0; i < kichThuoc; i++) {
+                const hangCo = document.createElement('div');
+                hangCo.className = 'hangCo';
+                
+                for (let j = 0; j < kichThuoc; j++) {
+                    const oCo = document.createElement('div');
+                    oCo.className = 'oCo';
+                    oCo.textContent = banCo[i][j];
+                    oCo.onclick = function() { danhCo(i, j); };
+                    hangCo.appendChild(oCo);
+                }
+                
+                banCoElement.appendChild(hangCo);
+            }
+        }
+        
+        // Đánh cờ
+        function danhCo(hang, cot) {
+            if (banCo[hang][cot] !== '.' || gameKetThuc) return;
+            
+            banCo[hang][cot] = luotChoi;
+            hienThiBanCo();
+            
+            if (kiemTraThang()) {
+                document.getElementById('thongBao').textContent = `Người chơi ${luotChoi} đã thắng!`;
+                gameKetThuc = true;
+                return;
+            }
+            
+            if (kiemTraHoa()) {
+                document.getElementById('thongBao').textContent = 'Hòa!';
+                gameKetThuc = true;
+                return;
+            }
+            
+            luotChoi = luotChoi === 'X' ? 'O' : 'X';
+            document.getElementById('luotChoi').textContent = `Lượt chơi: ${luotChoi}`;
+        }
+        
+        // Kiểm tra người thắng
+        function kiemTraThang() {
+            // Kiểm tra hàng ngang
+            for (let i = 0; i < kichThuoc; i++) {
+                if (banCo[i][0] !== '.' && banCo[i][0] === banCo[i][1] && banCo[i][1] === banCo[i][2]) {
+                    return true;
+                }
+            }
+            
+            // Kiểm tra hàng dọc
+            for (let j = 0; j < kichThuoc; j++) {
+                if (banCo[0][j] !== '.' && banCo[0][j] === banCo[1][j] && banCo[1][j] === banCo[2][j]) {
+                    return true;
+                }
+            }
+            
+            // Kiểm tra đường chéo
+            if (banCo[0][0] !== '.' && banCo[0][0] === banCo[1][1] && banCo[1][1] === banCo[2][2]) {
+                return true;
+            }
+            
+            if (banCo[0][2] !== '.' && banCo[0][2] === banCo[1][1] && banCo[1][1] === banCo[2][0]) {
+                return true;
+            }
+            
+            return false;
+        }
+        
+        // Kiểm tra hòa
+        function kiemTraHoa() {
+            for (let i = 0; i < kichThuoc; i++) {
+                for (let j = 0; j < kichThuoc; j++) {
+                    if (banCo[i][j] === '.') return false;
+                }
+            }
+            return true;
+        }
+        
+        // Reset game
+        function resetGame() {
+            khoiTaoBanCo();
+            hienThiBanCo();
+            luotChoi = 'X';
+            gameKetThuc = false;
+            document.getElementById('luotChoi').textContent = `Lượt chơi: ${luotChoi}`;
+            document.getElementById('thongBao').textContent = '';
+        }
+        
+        // Khởi tạo game
+        khoiTaoBanCo();
+        hienThiBanCo();
+    </script>
+</body>
+</html>
