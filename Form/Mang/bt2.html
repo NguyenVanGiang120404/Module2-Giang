@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Từ Điển Đơn Giản</title>
+    <style>
+        /* Căn giữa trang */
+        body {
+            text-align: center;
+        }
+
+        /* Tạo khoảng cách cho các phần tử */
+        h1 {
+            margin: 20px;
+        }
+
+        input {
+            width: 200px;
+            margin: 10px;
+        }
+
+        button {
+            margin: 10px;
+        }
+
+        #ketqua {
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Từ Điển Anh - Việt</h1>
+    
+    <!-- Form nhập từ -->
+    <div>
+        <input type="text" id="tukhoa" placeholder="Nhập từ tiếng Anh">
+        <button onclick="timTu()">Tìm</button>
+    </div>
+
+    <!-- Khu vực hiển thị kết quả -->
+    <div id="ketqua"></div>
+
+    <script>
+        // Tạo mảng từ điển
+        var tuAnh = ["hello", "world", "book", "computer"];
+        var tuViet = ["xin chào", "thế giới", "sách", "máy tính"];
+
+        // Hàm tìm từ
+        function timTu() {
+            // Lấy từ người dùng nhập
+            var tuCanTim = document.getElementById("tukhoa").value;
+            
+            // Chuyển về chữ thường để dễ so sánh
+            tuCanTim = tuCanTim.toLowerCase();
+            
+            // Tìm từ trong mảng
+            var timThay = false;
+            for(var i = 0; i < tuAnh.length; i++) {
+                if(tuAnh[i] === tuCanTim) {
+                    // Nếu tìm thấy
+                    document.getElementById("ketqua").innerHTML = 
+                        "Nghĩa tiếng Việt: " + tuViet[i];
+                    timThay = true;
+                    break;
+                }
+            }
+            
+            // Nếu không tìm thấy
+            if(!timThay) {
+                document.getElementById("ketqua").innerHTML = 
+                    "Không tìm thấy từ này!";
+            }
+        }
+    </script>
+</body>
+</html>
