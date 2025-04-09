@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Trò Chơi Gõ Chữ Vui Nhộn</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-align: center;
+            background-color: #f0f8ff;
+            background-image: url('https://img.freepik.com/free-vector/hand-drawn-colorful-pattern-background_23-2148916867.jpg');
+            background-size: cover;
+            color: #333;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            border: 5px dashed #ff69b4;
+        }
+        
+        h1 {
+            color: #ff1493;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        #message {
+            font-size: 24px;
+            min-height: 100px;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 10px;
+            border: 3px solid #ff69b4;
+            color: #333;
+            line-height: 1.5;
+        }
+        
+        .key {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background-color: #ff69b4;
+            color: white;
+            border-radius: 10px;
+            margin: 5px;
+            line-height: 50px;
+            font-weight: bold;
+            box-shadow: 0 4px 0 #c71585;
+            transition: all 0.1s;
+        }
+        
+        .key:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #c71585;
+        }
+        
+        .keyboard {
+            margin: 20px auto;
+            max-width: 600px;
+        }
+        
+        .keyboard-row {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 5px;
+        }
+        
+        button {
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            margin: 10px;
+            box-shadow: 0 4px 0 #c71585;
+            transition: all 0.1s;
+        }
+        
+        button:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #c71585;
+        }
+        
+        .instructions {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px auto;
+            max-width: 600px;
+            border: 3px dashed #ff69b4;
+        }
+        
+        .character {
+            display: inline-block;
+            margin: 2px;
+            transition: all 0.3s;
+        }
+        
+        .character.highlight {
+            color: #ff1493;
+            font-weight: bold;
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✨ Trò Chơi Gõ Chữ Vui Nhộn ✨</h1>
+        
+        <div class="instructions">
+            <p>Gõ bất kỳ phím nào trên bàn phím để hiện ra từng chữ của thông điệp bí mật!</p>
+            <p>Bạn có thể gõ bất kỳ phím nào, thông điệp vẫn sẽ hiện ra từng chữ một.</p>
+        </div>
+        
+        <div id="message"></div>
+        
+        <div class="keyboard">
+            <div class="keyboard-row">
+                <div class="key">Q</div>
+                <div class="key">W</div>
+                <div class="key">E</div>
+                <div class="key">R</div>
+                <div class="key">T</div>
+                <div class="key">Y</div>
+                <div class="key">U</div>
+                <div class="key">I</div>
+                <div class="key">O</div>
+                <div class="key">P</div>
+            </div>
+            <div class="keyboard-row">
+                <div class="key">A</div>
+                <div class="key">S</div>
+                <div class="key">D</div>
+                <div class="key">F</div>
+                <div class="key">G</div>
+                <div class="key">H</div>
+                <div class="key">J</div>
+                <div class="key">K</div>
+                <div class="key">L</div>
+            </div>
+            <div class="keyboard-row">
+                <div class="key">Z</div>
+                <div class="key">X</div>
+                <div class="key">C</div>
+                <div class="key">V</div>
+                <div class="key">B</div>
+                <div class="key">N</div>
+                <div class="key">M</div>
+            </div>
+            <div class="keyboard-row">
+                <div class="key" style="width: 100px;">Space</div>
+            </div>
+        </div>
+        
+        <button onclick="resetMessage()">Chơi Lại</button>
+    </div>
+
+    <script>
+        // Thông điệp cố định sẽ hiện ra
+        const secretMessage = "Xin chào! Bạn đã khám phá ra thông điệp bí mật này. Bạn thật tuyệt vời! 🌟";
+        
+        // Biến lưu trữ vị trí hiện tại trong thông điệp
+        let currentPosition = 0;
+        
+        // Hàm xử lý sự kiện khi người dùng gõ phím
+        function handleKeyPress(event) {
+            // Ngăn chặn hành vi mặc định của phím
+            event.preventDefault();
+            
+            // Nếu đã hiện hết thông điệp, không làm gì cả
+            if (currentPosition >= secretMessage.length) {
+                return;
+            }
+            
+            // Hiện thêm một ký tự
+            const messageElement = document.getElementById('message');
+            const nextChar = secretMessage[currentPosition];
+            
+            // Tạo phần tử span cho ký tự mới
+            const charSpan = document.createElement('span');
+            charSpan.className = 'character';
+            charSpan.textContent = nextChar;
+            
+            // Thêm hiệu ứng highlight
+            charSpan.classList.add('highlight');
+            
+            // Thêm vào thông điệp
+            messageElement.appendChild(charSpan);
+            
+            // Tăng vị trí hiện tại
+            currentPosition++;
+            
+            // Nếu đã hiện hết thông điệp
+            if (currentPosition >= secretMessage.length) {
+                // Thêm hiệu ứng confetti hoặc thông báo
+                messageElement.innerHTML += "<br><br>🎉 Bạn đã hoàn thành thông điệp! 🎉";
+            }
+            
+            // Xóa hiệu ứng highlight sau 0.5 giây
+            setTimeout(() => {
+                charSpan.classList.remove('highlight');
+            }, 500);
+        }
+        
+        // Hàm reset thông điệp
+        function resetMessage() {
+            document.getElementById('message').innerHTML = '';
+            currentPosition = 0;
+        }
+        
+        // Thêm sự kiện lắng nghe phím gõ
+        document.addEventListener('keydown', handleKeyPress);
+    </script>
+</body>
+</html> 
