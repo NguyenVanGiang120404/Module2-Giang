@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OOP(1)</title>
+</head>
+
+<body>
+    <script>
+        //Cách 1: Constructor Function
+        // function Person(name, age, weight) {
+        //     this.name = name;
+        //     this.age = age;
+        //     this.weight = weight;
+
+        //     this.say = function () {
+        //         console.log(`Tên của tôi là ${this.name},Tôi ${this.age} tuổi,Tôi nặng ${this.weight} kg`);
+        //     }
+        //     this.move = function () {
+        //         console.log(('walking...'));
+
+        //     }
+        // }
+        // const person1 = new Person('John', 20, 70);
+        // console.log(person1.name);
+        
+        // const person2 = new Person('Jane', 21, 60);
+        // console.log(person1);
+        // person1.say();
+        // person1.move();
+        // person2.say();
+        // person2.move();
+
+        
+
+        //Cách 2: Oject Liternal
+        // const person3 = {
+        //     name: 'John',
+        //     age: 20,
+        //     weight: 70,
+        //     say: function(){
+        //         console.log(`Tên của tôi là ${this.name},Tôi ${this.age} tuổi,Tôi nặng ${this.weight} kg`);
+        //     }
+        // }
+        // console.log(person3);
+        // person3.say();
+
+        // for(const key in person3){
+        //     console.log(key, person3[key]);
+        //     if(typeof person3[key] === 'function'){
+        //         person3[key]();
+        //     }else{
+        //         console.log(person3[key]);
+        //     }
+        // }
+
+
+        function Circle(radius){
+            this.radius = radius;
+            this.getArea = function(){
+                return Math.PI * this.radius * this.radius;
+            }
+            this.getPerimeter = function(){
+                return 2 * Math.PI * this.radius;
+            }
+        }
+        const binhNuocLoc = new Circle(10);
+        console.log(binhNuocLoc.getArea());
+        console.log(binhNuocLoc.getPerimeter());
+        
+
+        
+        
+
+    </script>
+</body>
+
+</html>
