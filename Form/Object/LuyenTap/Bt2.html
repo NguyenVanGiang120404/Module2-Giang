@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload="incrementAndDisplay(5)">
+    <div id="result">
+
+    </div>
+    <script>
+        function incrementNumber(num){
+            return num +1
+        }
+        function incrementAndDisplay(num){
+            const result = incrementNumber(num);;
+            document.getElementById("result").textContent = `số ban đầu: ${num} , Sau khi tăng: ${result}`
+        }
+    </script>
+</body>
+</html>
