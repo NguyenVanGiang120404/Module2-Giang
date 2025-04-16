@@ -81,6 +81,32 @@
         console.log("Đảo ngược mảng [1,2,3,4,5]:", reverseArray([1,2,3,4,5])); // [5,4,3,2,1]
         console.log("Số lần xuất hiện của 'a' trong ['a','b','a','c']:", 
             countCharInArray(['a','b','a','c'], 'a')); // 2
+
+        function isPalindrome(str) {
+            // Loại bỏ khoảng trắng và chuyển về chữ thường
+            str = str.toLowerCase().replace(/\s/g, '');
+            
+            // Nếu chuỗi rỗng hoặc chỉ có 1 ký tự, đó là palindrome
+            if (str.length <= 1) {
+                return true;
+            }
+            
+            // Kiểm tra ký tự đầu và cuối
+            if (str[0] !== str[str.length - 1]) {
+                return false;
+            }
+            
+            // Kiểm tra phần còn lại của chuỗi
+            return isPalindrome(str.slice(1, -1));
+        }
+
+        // Test các trường hợp
+        console.log("'rotor' có phải palindrome?", isPalindrome('rotor')); // true
+        console.log("'redder' có phải palindrome?", isPalindrome('redder')); // true
+        console.log("'motor' có phải palindrome?", isPalindrome('motor')); // false
+        console.log("'A man a plan a canal Panama' có phải palindrome?", 
+            isPalindrome('A man a plan a canal Panama')); // true
+        console.log("'hello' có phải palindrome?", isPalindrome('hello')); // false
     </script>
 </body>
 </html>
