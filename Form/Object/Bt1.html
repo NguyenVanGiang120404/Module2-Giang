@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        button {
+            background-color: green;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            
+        }
+
+        button:hover {
+            background-color: rgb(10, 10, 10);
+        }
+
+        input {
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>
+        Product add
+    </h2>
+    <form action="" onsubmit="addProduct(event)">
+        <input type="text" name="name" id="name">
+        <button>Add</button>
+    </form>
+    <h2>
+        Product List
+    </h2>
+    <table border="1">
+        <tbody id="productList">
+            <tr>
+                <td id="length">Product </td>
+                <td>Product Name</td>
+                <td><button>Edit</button></td>
+                <td><button>Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>
+<script>
+    const products = [
+        'iphone',
+        'samsung',
+        'nokia',
+        'oppo',
+        'vivo',
+        'xiaomi',
+        'realme',
+    ]
+    function disPlayProduct() {
+        const tableBody = document.getElementById('productList');
+        tableBody.innerHTML = '';
+        let row = '';
+        for (let i = 0; i < products.length; i++) {
+            row += `<tr>`
+            row += `<td>${i+1}</td>`
+            row += `<td>${products[i]}</td>`
+            row += `<td><button onclick="editProduct(${i})" >Edit</button></td>`
+            row += `<td><button onclick="deleteProduct(${i})">Delete</button></td>`
+            row += `</tr>`
+        }
+        tableBody.innerHTML = row;
+    }
+
+    function addProduct(e) {
+        e.preventDefault();
+        const ProductName = document.getElementById('name').value;
+        products.push(ProductName)
+        disPlayProduct()
+
+    }
+    function deleteProduct(index) {
+        if (confirm('Are you sure you want to delete this product?')) {
+            products.splice(index, 1);
+            disPlayProduct()
+        }
+    }
+    function editProduct(index) {
+        const productName = products[index];
+        console.log(productName);
+        document.getElementById('name').value = productName;
+        products.splice(index, 1);
+        disPlayProduct()
+
+
+    }
+
+    disPlayProduct()
+</script>
