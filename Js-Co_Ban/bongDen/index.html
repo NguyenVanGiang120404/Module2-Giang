@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // =========================
+        // LỚP BÓNG ĐÈN
+        // =========================
+        class BongDen {
+            constructor() {
+                this.trangThai = false; // false = tắt, true = bật
+            }
+
+            bat() {
+                this.trangThai = true;
+            }
+
+            tat() {
+                this.trangThai = false;
+            }
+
+            hienThiTrangThai() {
+                console.log(`Bóng đèn đang ${this.trangThai ? "BẬT" : "TẮT"}`);
+            }
+        }
+
+        // =========================
+        // LỚP CÔNG TẮC
+        // =========================
+        class CongTac {
+            constructor(bongDen) {
+                this.trangThai = false;
+                this.bongDen = bongDen;
+            }
+
+            chuyenTrangThai() {
+                this.trangThai = !this.trangThai;
+
+                if (this.trangThai) {
+                    this.bongDen.bat();
+                } else {
+                    this.bongDen.tat();
+                }
+
+                this.bongDen.hienThiTrangThai();
+            }
+        }
+
+        // =========================
+        // KHỞI TẠO VÀ CHẠY KỊCH BẢN
+        // =========================
+        let den = new BongDen();
+        let congTac = new CongTac(den);
+
+        console.log("BẮT ĐẦU KỊCH BẢN BẬT/TẮT:");
+        for (let i = 0; i < 10; i++) {
+            console.log(`Lần ${i + 1}:`);
+            congTac.chuyenTrangThai();
+        }
+
+    </script>
+</body>
+
+</html>
