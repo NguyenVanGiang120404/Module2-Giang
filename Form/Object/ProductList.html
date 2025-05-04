@@ -6,114 +6,264 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        .form-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        input,
         button {
-            background-color: green;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: #3498db;
             color: white;
             border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
             cursor: pointer;
-            
+            transition: background-color 0.3s ease;
         }
 
         button:hover {
-            background-color: rgb(10, 10, 10);
-        }
-
-        input {
-            padding: 5px 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            background-color: #2980b9;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
+        th,
         td {
-            padding: 10px;
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
             text-align: left;
         }
 
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
+        th {
+            background-color: #f1f1f1;
+        }
+
+        img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        #search {
+            display: block;
+            margin: 0 auto 20px;
+            padding: 10px;
+            width: 50%;
+            border: 1px solid #ccc;
+            border-radius: 6px;
         }
     </style>
 </head>
 
 <body>
-    <h2>
-        Product add
-    </h2>
-    <form action="" onsubmit="addProduct(event)">
-        <input type="text" name="name" id="name">
-        <button>Add</button>
-    </form>
-    <h2>
-        Product List
-    </h2>
-    <table border="1">
-        <tbody id="productList">
+    <div>
+        <input type="text" id="name" placeholder="Tên">
+        <input type="text" id="tuoi" placeholder="Tuổi">
+        <input type="text" id="gioiTinh" placeholder="Giới Tính">
+        <input type="text" id="anh" placeholder="Link ảnh">
+        <input type="text" id="soThich" placeholder="Sở Thích (Cách nhau bởi dấu ,)">
+        <button onclick="addItem()">Thêm</button>
+        <button onclick="updateItem()">Cập Nhật</button>
+    </div>
+    <input type="text" name="" id="search" placeholder="Tìm kiếm theo tên" oninput="render()">
+    <table>
+        <thead>
             <tr>
-                <td id="length">Product </td>
-                <td>Product Name</td>
-                <td><button>Edit</button></td>
-                <td><button>Delete</button></td>
+                <th>Ảnh</th>
+                <th>Tên</th>
+                <th>Tuổi</th>
+                <th>Giới Tính</th>
+                <th>Sở thích</th>
+                <th>Hành động</th>
             </tr>
-        </tbody>
+        </thead>
+        <tbody id="list"></tbody>
     </table>
+    <script>
+        let danhSach = [
+            {
+                id: 1,
+                name: "Nguyễn Văn A",
+                tuoi: 25,
+                gioiTinh: "Nam",
+                anh: "https://randomuser.me/api/portraits/men/11.jpg",
+                soThich: ["Đọc sách", "Chơi thể thao", "Du lịch"]
+            },
+            {
+                id: 2,
+                name: "Trần Thị B",
+                tuoi: 22,
+                gioiTinh: "Nữ",
+                anh: "https://randomuser.me/api/portraits/women/21.jpg",
+                soThich: ["Nghe nhạc", "Nấu ăn", "Xem phim"]
+            },
+            {
+                id: 3,
+                name: "Lê Văn C",
+                tuoi: 30,
+                gioiTinh: "Nam",
+                anh: "https://randomuser.me/api/portraits/men/31.jpg",
+                soThich: ["Chụp ảnh", "Cắm trại", "Đá bóng"]
+            },
+            {
+                id: 4,
+                name: "Phạm Thị D",
+                tuoi: 27,
+                gioiTinh: "Nữ",
+                anh: "https://randomuser.me/api/portraits/women/41.jpg",
+                soThich: ["Yoga", "Mua sắm", "Làm bánh"]
+            },
+            {
+                id: 5,
+                name: "Đỗ Văn E",
+                tuoi: 23,
+                gioiTinh: "Nam",
+                anh: "https://randomuser.me/api/portraits/men/51.jpg",
+                soThich: ["Chơi game", "Học lập trình", "Nghe podcast"]
+            },
+            {
+                id: 6,
+                name: "Ngô Thị F",
+                tuoi: 29,
+                gioiTinh: "Nữ",
+                anh: "https://randomuser.me/api/portraits/women/61.jpg",
+                soThich: ["Vẽ tranh", "Viết blog", "Chạy bộ"]
+            },
+            {
+                id: 7,
+                name: "Huỳnh Văn G",
+                tuoi: 35,
+                gioiTinh: "Nam",
+                anh: "https://randomuser.me/api/portraits/men/71.jpg",
+                soThich: ["Câu cá", "Làm vườn", "Xem bóng đá"]
+            },
+            {
+                id: 8,
+                name: "Võ Thị H",
+                tuoi: 21,
+                gioiTinh: "Nữ",
+                anh: "https://randomuser.me/api/portraits/women/81.jpg",
+                soThich: ["Chụp ảnh", "Xem phim hoạt hình", "Nấu ăn"]
+            },
+            {
+                id: 9,
+                name: "Phan Văn I",
+                tuoi: 28,
+                gioiTinh: "Nam",
+                anh: "https://randomuser.me/api/portraits/men/91.jpg",
+                soThich: ["Leo núi", "Uống cà phê", "Nghe nhạc Jazz"]
+            },
+            {
+                id: 10,
+                name: "Bùi Thị J",
+                tuoi: 26,
+                gioiTinh: "Nữ",
+                anh: "https://randomuser.me/api/portraits/women/12.jpg",
+                soThich: ["Làm đồ handmade", "Học ngoại ngữ", "Đi dạo"]
+            }
+        ]
+        let editingId = null;
+
+        function render() {
+            const keyWord = document.getElementById("search").value.toLowerCase();
+            const tbody = document.getElementById("list")
+            tbody.innerHTML = "";
+            danhSach
+                .filter(p => p.name.toLocaleLowerCase().includes(keyWord))
+                .forEach(p => {
+                    const row = `<tr>
+                        <td><img src="${p.anh}" alt="avatar"></td>
+                        <td>${p.name}</td>
+                        <td>${p.tuoi}</td>
+                        <td>${p.gioiTinh}</td>
+                        <td>${p.soThich.join(",")}</td>
+                        <td>
+                            <button style="background:#27ae60" onclick="editItem(${p.id})">Sửa</button>
+                            <button style="background:#e74c3c" onclick="deleteItem(${p.id})">Xóa</button>
+                        </td>
+                        </tr>`
+                    tbody.innerHTML += row
+                })
+        }
+        function addItem() {
+            const name = document.getElementById("name").value;
+            const tuoi = document.getElementById("tuoi").value;
+            const gioiTinh = document.getElementById("gioiTinh").value;
+            const anh = document.getElementById("anh").value;
+            const soThich = document.getElementById("soThich").value.split(",").map(s => s.trim());
+            if (!name || isNaN(tuoi)) return alert("Vui lòng nhập thông tin hợp lệ!");
+            danhSach.push({
+                id: Date.now(), name, tuoi, gioiTinh, anh, soThich
+            });
+            clearForm();
+            render();
+        }
+        function editItem(id) {
+            const p = danhSach.find(p => p.id === id);
+            document.getElementById("name").value = p.name;
+            document.getElementById("tuoi").value = p.tuoi;
+            document.getElementById("gioiTinh").value = p.gioiTinh;
+            document.getElementById("anh").value = p.anh;
+            document.getElementById("soThich").value = p.soThich.join(",");
+            editingId = id;
+        }
+        function updateItem() {
+            if (editingId === null) return;
+            const name = document.getElementById("name").value;
+            const tuoi = document.getElementById("tuoi").value;
+            const gioiTinh = document.getElementById("gioiTinh").value;
+            const anh = document.getElementById("anh").value;
+            const soThich = document.getElementById("soThich").value.split(",").map(s => s.trim());
+            const index = danhSach.findIndex(p => p.id === editingId);
+            danhSach[index] = { id, editingId, name, tuoi, anh, gioiTinh, soThich }
+            editingId = null;
+            clearForm();
+            render();
+
+
+        }
+        function deleteItem(id) {
+            if (!confirm("Bạn có chắc chắn muốn xóa!")) return;
+            danhSach = danhSach.filter(p => p.id !== id)
+            render()
+        }
+        function clearForm() {
+            document.querySelectorAll("input[type=text] , input[type=number]").forEach(i => i.value = "")
+        }
+        render()
+    </script>
 </body>
 
 </html>
-<script>
-    const products = [
-        'iphone',
-        'samsung',
-        'nokia',
-        'oppo',
-        'vivo',
-        'xiaomi',
-        'realme',
-    ]
-    function disPlayProduct() {
-        const tableBody = document.getElementById('productList');
-        tableBody.innerHTML = '';
-        let row = '';
-        for (let i = 0; i < products.length; i++) {
-            row += `<tr>`
-            row += `<td>${i+1}</td>`
-            row += `<td>${products[i]}</td>`
-            row += `<td><button onclick="editProduct(${i})" >Edit</button></td>`
-            row += `<td><button onclick="deleteProduct(${i})">Delete</button></td>`
-            row += `</tr>`
-        }
-        tableBody.innerHTML = row;
-    }
-
-    function addProduct(e) {
-        e.preventDefault();
-        const ProductName = document.getElementById('name').value;
-        products.push(ProductName)
-        disPlayProduct()
-
-    }
-    function deleteProduct(index) {
-        if (confirm('Are you sure you want to delete this product?')) {
-            products.splice(index, 1);
-            disPlayProduct()
-        }
-    }
-    function editProduct(index) {
-        const productName = products[index];
-        console.log(productName);
-        document.getElementById('name').value = productName;
-        products.splice(index, 1);
-        disPlayProduct()
-
-
-    }
-
-    disPlayProduct()
-</script>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // =========================
+        // BÀI 1
+        // =========================
+        console.log("Bài 1:");
+        let arr1 = [3, 12, 7, 10, 25, 8, 4, 15, 30, 2];
+        let count1 = arr1.filter(x => x >= 10).length;
+        console.log(`Có ${count1} số nguyên lớn hơn hoặc bằng 10.\n`);
+
+        // =========================
+        // BÀI 2
+        // =========================
+        console.log("Bài 2:");
+        let arr2 = [3, 12, 7, 10, 25, 8, 4, 15, 30, 2];
+        let max2 = Math.max(...arr2);
+        let index2 = arr2.indexOf(max2);
+        console.log(`Giá trị lớn nhất là ${max2} ở vị trí ${index2}.\n`);
+
+        // =========================
+        // BÀI 3
+        // =========================
+        console.log("Bài 3:");
+        let arr3 = [3, 12, 7, 10, 25, 8, 4, 15, 30, 2];
+        let max3 = Math.max(...arr3);
+        let avg3 = arr3.reduce((a, b) => a + b, 0) / arr3.length;
+        console.log(`Giá trị lớn nhất: ${max3}`);
+        console.log(`Giá trị trung bình: ${avg3}\n`);
+
+        // =========================
+        // BÀI 4
+        // =========================
+        console.log("Bài 4:");
+        let arr4 = [3, 12, 7, 10, 25];
+        let reversed4 = [...arr4].reverse();
+        console.log("Mảng sau khi đảo ngược:", reversed4, "\n");
+
+        // =========================
+        // BÀI 5
+        // =========================
+        console.log("Bài 5:");
+        let str5 = "12 -5 0 -3 8 -1 6";
+        let nums5 = str5.split(" ").map(Number);
+        let negCount5 = nums5.filter(x => x < 0).length;
+        console.log(`Số lượng số nguyên âm trong chuỗi là: ${negCount5}\n`);
+
+        // =========================
+        // BÀI 6
+        // =========================
+        console.log("Bài 6:");
+        let arr6 = [3, 12, 7, 10, 25, 8, 4, 15, 30, 2];
+        let V6 = 25;
+        console.log(arr6.includes(V6) ? "V is in the array" : "V is not in the array");
+        console.log();
+
+        // =========================
+        // BÀI 7
+        // =========================
+        console.log("Bài 7:");
+        let arr7 = [3, 12, 7, 10, 25, 8, 4, 15, 30, 2];
+        let V7 = 25;
+        let index7 = arr7.indexOf(V7);
+        if (index7 !== -1) {
+            for (let i = index7; i < arr7.length - 1; i++) {
+                arr7[i] = arr7[i + 1];
+            }
+            arr7[arr7.length - 1] = 0;
+        }
+        console.log("Mảng sau khi xử lý:", arr7, "\n");
+
+        // =========================
+        // BÀI 8
+        // =========================
+        console.log("Bài 8:");
+        let arr8 = [3, 12, 7, 10, 25, 8, 4, 15, 30, 2];
+        arr8.sort((a, b) => b - a);
+        console.log("Mảng sau khi sắp xếp giảm dần:", arr8, "\n");
+
+        // =========================
+        // BÀI 9
+        // =========================
+        console.log("Bài 9:");
+        let a9 = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19];
+        let b9 = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20];
+        let c9 = b9.concat(a9);
+        console.log("Mảng c sau khi nối:", c9);
+
+    </script>
+</body>
+
+</html>
