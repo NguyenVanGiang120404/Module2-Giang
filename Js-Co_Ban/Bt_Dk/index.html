@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài tập JavaScript</title>
+</head>
+<body>
+    <h1>Bài tập JavaScript</h1>
+
+    <h2>Bài 1: Chuyển từ độ C sang độ F</h2>
+    <script>
+        function celsiusToFahrenheit(celsius) {
+            return (celsius * 9 / 5) + 32;
+        }
+        let celsius = 25; // Nhập độ C
+        console.log(celsius + "°C = " + celsiusToFahrenheit(celsius) + "°F");
+    </script>
+
+    <h2>Bài 2: Chuyển từ mét sang feet</h2>
+    <script>
+        function metersToFeet(meters) {
+            return meters * 3.2808;
+        }
+        let meters = 10; // Nhập số mét
+        console.log(meters + "m = " + metersToFeet(meters) + "ft");
+    </script>
+
+    <h2>Bài 3: Tính diện tích hình vuông</h2>
+    <script>
+        function squareArea(side) {
+            return side * side;
+        }
+        let side = 4; // Nhập cạnh của hình vuông
+        console.log("Diện tích hình vuông là: " + squareArea(side));
+    </script>
+
+    <h2>Bài 4: Tính diện tích hình chữ nhật</h2>
+    <script>
+        function rectangleArea(length, width) {
+            return length * width;
+        }
+        let length = 5; // Nhập chiều dài
+        let width = 3;  // Nhập chiều rộng
+        console.log("Diện tích hình chữ nhật là: " + rectangleArea(length, width));
+    </script>
+
+    <h2>Bài 5: Tính diện tích tam giác vuông</h2>
+    <script>
+        function triangleArea(base, height) {
+            return (base * height) / 2;
+        }
+        let base = 6;  // Nhập chiều dài đáy
+        let height = 4; // Nhập chiều cao
+        console.log("Diện tích tam giác vuông là: " + triangleArea(base, height));
+    </script>
+
+    <h2>Bài 6: Giải phương trình bậc 1</h2>
+    <script>
+        function solveLinearEquation(a, b) {
+            if (a === 0) {
+                if (b === 0) {
+                    console.log("Phương trình vô số nghiệm.");
+                } else {
+                    console.log("Phương trình vô nghiệm.");
+                }
+            } else {
+                return -b / a;
+            }
+        }
+        let a = 2, b = 3;
+        console.log("Nghiệm phương trình bậc 1: x = " + solveLinearEquation(a, b));
+    </script>
+
+    <h2>Bài 7: Giải phương trình bậc 2</h2>
+    <script>
+        function solveQuadraticEquation(a, b, c) {
+            let delta = b * b - 4 * a * c;
+            if (delta < 0) {
+                console.log("Phương trình vô nghiệm.");
+            } else if (delta === 0) {
+                return -b / (2 * a);
+            } else {
+                let x1 = (-b + Math.sqrt(delta)) / (2 * a);
+                let x2 = (-b - Math.sqrt(delta)) / (2 * a);
+                return [x1, x2];
+            }
+        }
+        let a2 = 1, b2 = -3, c2 = 2;
+        console.log("Nghiệm phương trình bậc 2: " + solveQuadraticEquation(a2, b2, c2));
+    </script>
+
+    <h2>Bài 8: Kiểm tra tuổi</h2>
+    <script>
+        function checkAge(age) {
+            if (age > 0 && age < 120) {
+                console.log("Tuổi hợp lệ.");
+            } else {
+                console.log("Tuổi không hợp lệ.");
+            }
+        }
+        let age = 25;
+        checkAge(age);
+    </script>
+
+    <h2>Bài 9: Kiểm tra xem 3 số có phải là cạnh của một tam giác</h2>
+    <script>
+        function checkTriangle(a, b, c) {
+            if (a > 0 && b > 0 && c > 0 && a + b > c && b + c > a && a + c > b) {
+                console.log("Đây là các cạnh của một tam giác.");
+            } else {
+                console.log("Đây không phải là các cạnh của một tam giác.");
+            }
+        }
+        let a3 = 3, b3 = 4, c3 = 5;
+        checkTriangle(a3, b3, c3);
+    </script>
+
+    <h2>Bài 10: Tính giá điện</h2>
+    <script>
+        function calculateElectricityBill(kWh) {
+            let price;
+            if (kWh <= 50) {
+                price = 1000 * kWh;
+            } else if (kWh <= 100) {
+                price = 1000 * 50 + 1200 * (kWh - 50);
+            } else if (kWh <= 200) {
+                price = 1000 * 50 + 1200 * 50 + 1500 * (kWh - 100);
+            } else {
+                price = 1000 * 50 + 1200 * 50 + 1500 * 100 + 2000 * (kWh - 200);
+            }
+            return price;
+        }
+        let kWh = 250; // Nhập số kWh tiêu thụ
+        console.log("Giá điện là: " + calculateElectricityBill(kWh) + " VND");
+    </script>
+
+    <h2>Bài 11: Tính thuế thu nhập cá nhân</h2>
+    <script>
+        function calculateIncomeTax(income) {
+            let tax;
+            if (income <= 5000000) {
+                tax = income * 0.05;
+            } else if (income <= 10000000) {
+                tax = income * 0.1;
+            } else if (income <= 18000000) {
+                tax = income * 0.15;
+            } else {
+                tax = income * 0.2;
+            }
+            return tax;
+        }
+        let income = 15000000; // Thu nhập
+        console.log("Thuế thu nhập cá nhân phải nộp là: " + calculateIncomeTax(income) + " VND");
+    </script>
+
+    <h2>Bài 12: Tính lãi ngân hàng (lãi mẹ đẻ lãi con)</h2>
+    <script>
+        function calculateCompoundInterest(principal, months, monthlyRate) {
+            let totalAmount = principal;
+            for (let i = 0; i < months; i++) {
+                totalAmount += totalAmount * monthlyRate;
+            }
+            return totalAmount;
+        }
+        let principal2 = 1000; // Tiền gốc
+        let months2 = 12; // Số tháng
+        let monthlyRate2 = 0.05; // Lãi suất hàng tháng
+        console.log("Số tiền sau khi tính lãi là: " + calculateCompoundInterest(principal2, months2, monthlyRate2) + " VND");
+    </script>
+
+</body>
+</html>
