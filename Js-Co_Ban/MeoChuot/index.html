@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // =====================
+        // LỚP RAT (Chuột)
+        // =====================
+        class Rat {
+            constructor(name, weight) {
+                this.name = name;
+                this.weight = weight;
+                this.isAlive = true;
+            }
+
+            squeak() {
+                if (this.isAlive) {
+                    console.log(`${this.name} kêu: Chít chít!`);
+                } else {
+                    console.log(`${this.name} đã bị ăn rồi.`);
+                }
+            }
+        }
+
+        // =====================
+        // LỚP CAT (Mèo)
+        // =====================
+        class Cat {
+            constructor(name, weight, maxPreyWeight) {
+                this.name = name;
+                this.weight = weight;
+                this.maxPreyWeight = maxPreyWeight; // Giới hạn cân nặng chuột có thể ăn
+            }
+
+            catchRat(rat) {
+                if (!rat.isAlive) {
+                    console.log(`${rat.name} đã chết, không thể bắt.`);
+                    return false;
+                }
+                console.log(`${this.name} đã bắt được ${rat.name}.`);
+                return true;
+            }
+
+            eatRat(rat) {
+                if (!rat.isAlive) {
+                    console.log(`${rat.name} đã chết rồi.`);
+                    return;
+                }
+
+                if (rat.weight <= this.maxPreyWeight) {
+                    rat.isAlive = false;
+                    this.weight += rat.weight;
+                    console.log(`${this.name} đã ăn ${rat.name}. Cân nặng bây giờ là ${this.weight}kg.`);
+                } else {
+                    console.log(`${rat.name} quá to, ${this.name} không thể ăn được.`);
+                }
+            }
+        }
+
+        // =====================
+        // KỊCH BẢN THỰC HIỆN
+        // =====================
+        const chuot1 = new Rat("Jerry", 0.3);
+        const meo1 = new Cat("Tom", 4.5, 0.5);
+
+        // Chuột kêu
+        chuot1.squeak();
+
+        // Mèo bắt chuột
+        if (meo1.catchRat(chuot1)) {
+            meo1.eatRat(chuot1);
+        }
+
+        // Chuột cố gắng kêu lần nữa
+        chuot1.squeak();
+
+    </script>
+</body>
+
+</html>
