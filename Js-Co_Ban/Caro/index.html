@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cờ Caro 20x20</title>
+    <style>
+        body {
+            margin: 20px;
+            font-family: sans-serif;
+        }
+
+        #board {
+            position: relative;
+            width: 600px;
+            height: 600px;
+            border: 2px solid #000;
+        }
+
+        .cell {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #aaa;
+            position: absolute;
+            text-align: center;
+            line-height: 30px;
+            font-size: 20px;
+            cursor: pointer;
+            user-select: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Cờ Caro 20x20</h2>
+    <div id="board"></div>
+    <p id="result" style="font-weight:bold;color:red;margin-top:15px;"></p>
+
+    <script>
+        const SIZE = 20;
+        const board = document.getElementById("board");
+        const result = document.getElementById("result");
+
+        let cells = []; // mảng 2 chiều
+        let currentPlayer = "X";
+        let isGameOver = false;
+
+        // BƯỚC 1: Tạo bảng
+        for (let row = 0; row < SIZE; row++) {
+            cells[row] = [];
+            for (let col = 0; col < SIZE; col++) {
+                const cell = document.createElement("div");
+                cell.className = "cell";
+                cell.style.left = col * 30 + "px";
+                cell.style.top = row * 30 + "px";
+                cell.dataset.row = row;
+                cell.dataset.col = col;
+                board.appendChild(cell);
+                cells[row][col] = "";
+            }
+        }
+
+        // BƯỚC 2: Xử lý click
+        board.addEventListener("click", function (e) {
+            if (isGameOver || !e.target.classList.contains("cell")) return;
+
+            const row = parseInt(e.target.dataset.row);
+            const col = parseInt(e.target.dataset.col);
+
+            if (cells[row][col] !== "") return;
+
+            // Gán giá trị và hiển thị
+            cells[row][col] = currentPlayer;
+            e.target.textContent = currentPlayer;
+
+            // BƯỚC 3: Kiểm tra thắng
+            if (checkWin(row, col)) {
+                result.textContent = `Người chơi ${currentPlayer} thắng!`;
+                isGameOver = true;
+                return;
+            }
+
+            // Đổi lượt
+            currentPlayer = currentPlayer === "X" ? "O" : "X";
+        });
+
+        // Hàm kiểm tra thắng
+        function checkWin(row, col) {
+            return (
+                countSame(row, col, 1, 0) + countSame(row, col, -1, 0) >= 4 || // ngang
+                countSame(row, col, 0, 1) + countSame(row, col, 0, -1) >= 4 || // dọc
+                countSame(row, col, 1, 1) + countSame(row, col, -1, -1) >= 4 || // chéo chính
+                countSame(row, col, 1, -1) + countSame(row, col, -1, 1) >= 4    // chéo phụ
+            );
+        }
+
+        // Đếm số lượng quân giống nhau liên tiếp theo hướng
+        function countSame(row, col, dx, dy) {
+            let count = 0;
+            let i = row + dx;
+            let j = col + dy;
+            while (
+                i >= 0 && i < SIZE &&
+                j >= 0 && j < SIZE &&
+                cells[i][j] === currentPlayer
+            ) {
+                count++;
+                i += dx;
+                j += dy;
+            }
+            return count;
+        }
+    </script>
+
+</body>
+
+</html>
