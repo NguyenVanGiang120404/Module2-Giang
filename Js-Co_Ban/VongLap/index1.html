@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài tập JavaScript</title>
+</head>
+<body>
+    <h1>Bài tập JavaScript</h1>
+
+    <h2>Bài 1: Đếm từ 1 đến 100</h2>
+    <script>
+        for (let i = 1; i <= 100; i++) {
+            console.log(i);
+            if (i === 99) {
+                alert("Đã hoàn thành đến số 99!");
+            }
+        }
+    </script>
+
+    <h2>Bài 2: Kiểm tra nhiệt độ</h2>
+    <script>
+        let temp = parseFloat(prompt("Nhập nhiệt độ hiện tại:"));
+        if (temp > 100) {
+            alert("Nhiệt độ cao quá, vui lòng giảm nhiệt!");
+        } else if (temp < 20) {
+            alert("Nhiệt độ thấp quá, vui lòng tăng nhiệt!");
+        } else {
+            alert("Nhiệt độ ổn định.");
+        }
+    </script>
+
+    <h2>Bài 3: Dãy Fibonacci đầu tiên</h2>
+    <script>
+        let a = 0, b = 1;
+        console.log("20 số Fibonacci đầu tiên:");
+        for (let i = 0; i < 20; i++) {
+            console.log(a);
+            let next = a + b;
+            a = b;
+            b = next;
+        }
+    </script>
+
+    <h2>Bài 4: Số Fibonacci chia hết cho 5</h2>
+    <script>
+        let a = 0, b = 1;
+        while (true) {
+            let next = a + b;
+            a = b;
+            b = next;
+            if (b % 5 === 0) {
+                console.log("Số Fibonacci đầu tiên chia hết cho 5 là:", b);
+                break;
+            }
+        }
+    </script>
+
+    <h2>Bài 5: Tính tổng 20 số Fibonacci đầu tiên</h2>
+    <script>
+        let a = 0, b = 1, sum = 0;
+        for (let i = 0; i < 20; i++) {
+            sum += a;
+            let next = a + b;
+            a = b;
+            b = next;
+        }
+        console.log("Tổng 20 số Fibonacci đầu tiên là:", sum);
+    </script>
+
+    <h2>Bài 6: Tổng 30 số chia hết cho 7</h2>
+    <script>
+        let count = 0, sum = 0, i = 0;
+        while (count < 30) {
+            if (i % 7 === 0) {
+                sum += i;
+                count++;
+            }
+            i++;
+        }
+        console.log("Tổng 30 số chia hết cho 7 đầu tiên là:", sum);
+    </script>
+
+    <h2>Bài 7: FizzBuzz từ 1 đến 100</h2>
+    <script>
+        for (let i = 1; i <= 100; i++) {
+            if (i % 15 === 0) {
+                console.log("FizzBuzz");
+            } else if (i % 3 === 0) {
+                console.log("Fizz");
+            } else if (i % 5 === 0) {
+                console.log("Buzz");
+            } else {
+                console.log(i);
+            }
+        }
+    </script>
+
+    <h2>Bài 8: Game đoán số</h2>
+    <script>
+        let secret = Math.floor(Math.random() * 100) + 1;
+        let guess;
+
+        do {
+            guess = parseInt(prompt("Đoán số bí mật (1-100):"));
+            if (guess > secret) {
+                alert("Số bạn đoán lớn hơn.");
+            } else if (guess < secret) {
+                alert("Số bạn đoán nhỏ hơn.");
+            } else {
+                alert("Chúc mừng! Bạn đã đoán đúng.");
+            }
+        } while (guess !== secret);
+    </script>
+</body>
+</html>
