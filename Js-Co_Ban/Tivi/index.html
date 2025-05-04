@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // =====================
+        // LỚP REMOTE
+        // =====================
+        class Remote {
+            // Remote sẽ điều khiển một TiVi thông qua các phương thức
+            power(tivi) {
+                if (tivi.isOn) {
+                    tivi.turnOff();
+                } else {
+                    tivi.turnOn();
+                }
+            }
+
+            changeChannel(tivi, newChannel) {
+                if (tivi.isOn) {
+                    tivi.setChannel(newChannel);
+                } else {
+                    console.log("Không thể đổi kênh. TiVi đang tắt.");
+                }
+            }
+
+            increaseVolume(tivi) {
+                if (tivi.isOn) {
+                    tivi.setVolume(tivi.volume + 1);
+                } else {
+                    console.log("Không thể tăng âm lượng. TiVi đang tắt.");
+                }
+            }
+
+            decreaseVolume(tivi) {
+                if (tivi.isOn) {
+                    tivi.setVolume(tivi.volume - 1);
+                } else {
+                    console.log("Không thể giảm âm lượng. TiVi đang tắt.");
+                }
+            }
+        }
+
+        // =====================
+        // LỚP TiVi
+        // =====================
+        class TiVi {
+            constructor(brand) {
+                this.brand = brand;
+                this.isOn = false;
+                this.volume = 10; // âm lượng mặc định
+                this.channel = 1; // kênh mặc định
+            }
+
+            turnOn() {
+                this.isOn = true;
+                console.log(`${this.brand} đã bật.`);
+            }
+
+            turnOff() {
+                this.isOn = false;
+                console.log(`${this.brand} đã tắt.`);
+            }
+
+            setChannel(channel) {
+                this.channel = channel;
+                console.log(`Chuyển đến kênh ${channel}.`);
+            }
+
+            setVolume(volume) {
+                this.volume = Math.max(0, Math.min(volume, 100)); // giới hạn từ 0 - 100
+                console.log(`Âm lượng hiện tại: ${this.volume}`);
+            }
+        }
+
+        // =====================
+        // KỊCH BẢN THỰC HIỆN
+        // =====================
+        const myTV = new TiVi("Sony");
+        const myRemote = new Remote();
+
+        // Bật TiVi
+        myRemote.power(myTV);
+
+        // Chuyển đến kênh 7
+        myRemote.changeChannel(myTV, 7);
+
+        // Tăng âm lượng 2 lần
+        myRemote.increaseVolume(myTV);
+        myRemote.increaseVolume(myTV);
+
+        // Giảm âm lượng
+        myRemote.decreaseVolume(myTV);
+
+        // Tắt TiVi
+        myRemote.power(myTV);
+
+        // Thử đổi kênh khi TiVi đã tắt
+        myRemote.changeChannel(myTV, 5);
+
+    </script>
+</body>
+
+</html>
