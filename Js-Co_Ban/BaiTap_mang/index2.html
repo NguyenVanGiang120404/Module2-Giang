@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // =========================
+        // BÀI 1: In mảng 2 chiều dùng vòng lặp for lồng nhau
+        // =========================
+        console.log("Bài 1:");
+        let a = [
+            [1, 2, 1, 24],
+            [8, 11, 9, 4],
+            [7, 0, 7, 27],
+            [7, 4, 28, 14],
+            [3, 10, 26, 7]
+        ];
+        for (let i = 0; i < a.length; i++) {
+            console.log(`row ${i}`);
+            for (let j = 0; j < a[i].length; j++) {
+                console.log(` ${a[i][j]}`);
+            }
+        }
+        console.log("\n");
+
+        // =========================
+        // BÀI 2: In mảng ký tự đảo ngược
+        // =========================
+        console.log("Bài 2:");
+        let chars = ['c', 's', 'c', '2', '6', '1'];
+        let reversed = chars.reverse().join('');
+        console.log("Sau khi đảo ngược:", reversed);
+        console.log("\n");
+
+        // =========================
+        // BÀI 3: Đếm ký tự là số trong mảng ký tự
+        // =========================
+        console.log("Bài 3:");
+        let charArray = ['a', '1', 'b', '2', '3', 'z', '9', 'x'];
+        let digitCount = charArray.filter(c => c >= '0' && c <= '9').length;
+        console.log("Số ký tự là chữ số:", digitCount);
+        console.log("\n");
+
+        // =========================
+        // BÀI 4: Đếm số từ trong chuỗi
+        // =========================
+        console.log("Bài 4:");
+        let sentence = "Đây là một chuỗi có nhiều từ.";
+        let wordCount = sentence.trim().split(/\s+/).length;
+        console.log("Số từ trong chuỗi:", wordCount);
+        console.log("\n");
+
+        // =========================
+        // BÀI 5: So sánh 2 chuỗi
+        // =========================
+        console.log("Bài 5:");
+        let str1 = "Hello World";
+        let str2 = "Hello World";
+        if (str1 === str2) {
+            console.log("Hai chuỗi giống nhau");
+        } else {
+            console.log("Hai chuỗi khác nhau");
+        }
+        console.log("\n");
+
+        // =========================
+        // BÀI 6: Thay ký tự '-' bằng '_'
+        // =========================
+        console.log("Bài 6:");
+        let inputChars = ['a', '-', 'b', '-', '-', 'c'];
+        let replaced = inputChars.map(c => c === '-' ? '_' : c);
+        console.log("Mảng sau khi thay thế:", replaced);
+
+    </script>
+</body>
+
+</html>
