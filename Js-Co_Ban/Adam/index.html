@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // ==========================
+        // LỚP Apple
+        // ==========================
+        class Apple {
+            constructor(weight = 10) {
+                this.weight = weight; // khối lượng mặc định: 10
+            }
+
+            isEmpty() {
+                return this.weight <= 0;
+            }
+
+            decrease() {
+                if (!this.isEmpty()) {
+                    this.weight--;
+                }
+            }
+
+            getWeight() {
+                return this.weight;
+            }
+        }
+
+        // ==========================
+        // LỚP Human
+        // ==========================
+        class Human {
+            constructor(name, gender, weight) {
+                this.name = name;
+                this.gender = gender;
+                this.weight = weight;
+            }
+
+            eat(apple) {
+                if (!apple.isEmpty()) {
+                    this.weight++;
+                    apple.decrease();
+                    console.log(`${this.name} đã ăn một miếng táo.`);
+                    console.log(`Cân nặng của ${this.name}: ${this.weight}kg`);
+                    console.log(`Khối lượng còn lại của táo: ${apple.getWeight()}\n`);
+                } else {
+                    console.log("Táo đã hết, không thể ăn nữa.\n");
+                }
+            }
+        }
+
+        // ==========================
+        // KHỞI TẠO ĐỐI TƯỢNG
+        // ==========================
+        const apple = new Apple(); // táo mặc định 10 đơn vị
+        const adam = new Human("Adam", "Nam", 70);
+        const eva = new Human("Eva", "Nữ", 50);
+
+        // ==========================
+        // KỊCH BẢN: ĂN TÁO LUÂN PHIÊN
+        // ==========================
+        console.log("=== Bắt đầu ăn táo ===\n");
+
+        let turn = 0;
+        while (!apple.isEmpty()) {
+            if (turn % 2 === 0) {
+                adam.eat(apple);
+            } else {
+                eva.eat(apple);
+            }
+            turn++;
+        }
+
+        console.log("=== Táo đã hết ===");
+        console.log(`${adam.name} nặng: ${adam.weight}kg`);
+        console.log(`${eva.name} nặng: ${eva.weight}kg`);
+
+    </script>
+</body>
+
+</html>
