@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài tập JavaScript</title>
+</head>
+<body>
+    <h1>Bài tập JavaScript</h1>
+
+    <h2>Bài 1: In dãy Fibonacci</h2>
+    <script>
+        function fibonacci(n) {
+            let a = 0, b = 1;
+            let result = [];
+            for (let i = 0; i < n; i++) {
+                result.push(a);
+                let next = a + b;
+                a = b;
+                b = next;
+            }
+            return result;
+        }
+
+        let n = 20; // In 20 số Fibonacci đầu tiên
+        console.log(fibonacci(n));
+    </script>
+
+    <h2>Bài 2: Tính giai thừa của một số nguyên dương</h2>
+    <script>
+        function factorial(n) {
+            if (n === 0 || n === 1) {
+                return 1;
+            }
+            let result = 1;
+            for (let i = 2; i <= n; i++) {
+                result *= i;
+            }
+            return result;
+        }
+
+        let number = 5; // Tính giai thừa của số 5
+        console.log("Giai thừa của " + number + " là: " + factorial(number));
+    </script>
+
+    <h2>Bài 3: In tam giác vuông với các góc vuông nằm ở các vị trí khác nhau</h2>
+    <script>
+        // Góc vuông nằm ở góc trên bên trái
+        function triangleTopLeft(height) {
+            for (let i = 1; i <= height; i++) {
+                let row = '';
+                for (let j = 1; j <= i; j++) {
+                    row += '*';
+                }
+                console.log(row);
+            }
+        }
+
+        // Góc vuông nằm ở góc trên bên phải
+        function triangleTopRight(height) {
+            for (let i = 1; i <= height; i++) {
+                let row = ' '.repeat(height - i) + '*'.repeat(i);
+                console.log(row);
+            }
+        }
+
+        // Góc vuông nằm ở góc dưới bên trái
+        function triangleBottomLeft(height) {
+            for (let i = 1; i <= height; i++) {
+                let row = ' '.repeat(height - i) + '*'.repeat(i);
+                console.log(row);
+            }
+        }
+
+        // Góc vuông nằm ở góc dưới bên phải
+        function triangleBottomRight(height) {
+            for (let i = height; i >= 1; i--) {
+                let row = ' '.repeat(height - i) + '*'.repeat(i);
+                console.log(row);
+            }
+        }
+
+        let height = 5;
+        console.log("Góc vuông trên bên trái:");
+        triangleTopLeft(height);
+        console.log("Góc vuông trên bên phải:");
+        triangleTopRight(height);
+        console.log("Góc vuông dưới bên trái:");
+        triangleBottomLeft(height);
+        console.log("Góc vuông dưới bên phải:");
+        triangleBottomRight(height);
+    </script>
+
+    <h2>Bài 4: In hình chữ nhật</h2>
+    <script>
+        function rectangle(width, height) {
+            for (let i = 0; i < height; i++) {
+                console.log('*'.repeat(width));
+            }
+        }
+
+        let width = 8;
+        let height = 4;
+        rectangle(width, height);
+    </script>
+
+    <h2>Bài 5: Tính lãi ngân hàng (lãi mẹ đẻ lại con)</h2>
+    <script>
+        function calculateInterest(principal, months, monthlyRate) {
+            let totalAmount = principal;
+            for (let i = 0; i < months; i++) {
+                totalAmount += totalAmount * monthlyRate;
+            }
+            return totalAmount;
+        }
+
+        let principal = 1000; // Tiền gốc
+        let months = 12; // Thời gian cho vay 12 tháng
+        let monthlyRate = 0.05; // Lãi suất hàng tháng 5%
+
+        let finalAmount = calculateInterest(principal, months, monthlyRate);
+        console.log("Số tiền sau khi tính lãi là:", finalAmount);
+    </script>
+
+    <h2>Bài 6: In hình trái tim</h2>
+    <script>
+        function heartShape(height) {
+            let i, j;
+            for (i = height / 2; i <= height; i += 2) {
+                let row = '';
+                for (j = 1; j < height - i; j += 2) {
+                    row += ' ';
+                }
+                for (j = 1; j <= i; j++) {
+                    row += '*';
+                }
+                for (j = 1; j <= height - i; j++) {
+                    row += ' ';
+                }
+                console.log(row);
+            }
+            for (i = height; i >= 1; i--) {
+                let row = '';
+                for (j = i; j < height; j++) {
+                    row += ' ';
+                }
+                for (j = 1; j <= (i * 2) - 1; j++) {
+                    row += '*';
+                }
+                console.log(row);
+            }
+        }
+
+        let height = 6; // Điều chỉnh chiều cao hình trái tim
+        heartShape(height);
+    </script>
+
+</body>
+</html>
